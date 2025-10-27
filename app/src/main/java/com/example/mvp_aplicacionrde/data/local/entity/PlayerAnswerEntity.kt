@@ -5,10 +5,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "player_answers")
 data class PlayerAnswerEntity(
-    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    @PrimaryKey val id: String,
     val gameId: String,
-    val questionId: String,
-    val selectedIndex: Int,
-    val correct: Boolean,
+    val scenarioId: Int,
+    val answerText: String,
     val answeredAt: Long
 )

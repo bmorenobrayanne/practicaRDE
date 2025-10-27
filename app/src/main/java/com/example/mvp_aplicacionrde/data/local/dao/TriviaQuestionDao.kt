@@ -5,11 +5,12 @@ import com.example.mvp_aplicacionrde.data.local.entity.TriviaQuestionEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface TriviaDao {
+interface TriviaQuestionDao {
 
+    @Query("SELECT * FROM trivia_questions WHERE scenarioId = :scenarioId LIMIT 1")
+    suspend fun getTriviaForScenario(scenarioId: Int): TriviaQuestionEntity?
+
+    // 🟢 Insertar o actualizar una trivia
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertQuestions(questions: List<TriviaQuestionEntity>)
-
-    @Query("SELECT * FROM trivia_questions WHERE scenarioId = :scenarioId")
-    fun getQuestionsByScenario(scenarioId: String): Flow<List<TriviaQuestionEntity>>
+    suspend fun insertTriviaQuestion(q: TriviaQuestionEntity)
 }

@@ -5,9 +5,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "scenarios")
 data class ScenarioEntity(
-    @PrimaryKey val scenarioId: String,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,                    // 👈 ESTE es el ID real del escenario
     val title: String,
     val description: String,
-    val imageLocalPath: String?,
-    val imageRemoteUrl: String?
+    val imageUrl: String
 )

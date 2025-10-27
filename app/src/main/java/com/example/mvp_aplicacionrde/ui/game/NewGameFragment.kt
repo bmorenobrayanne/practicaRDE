@@ -20,9 +20,15 @@ class NewGameFragment : Fragment() {
 
     private val viewModel: GameViewModel by viewModels {
         val db = AppDatabase.getDatabase(requireContext())
-        val gameRepo = GameRepository(db.gameDao())
+        val gameRepo = GameRepository(
+            db.gameDao(),
+            db.scenarioDao(),
+            db.triviaDao(),
+            db.playerAnswerDao()
+        )
         val userRepo = UserRepository(db.userDao())
         GameViewModelFactory(gameRepo, userRepo)
+
     }
 
     override fun onCreateView(

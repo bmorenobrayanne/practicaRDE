@@ -20,16 +20,21 @@ import com.example.mvp_aplicacionrde.data.local.entity.*
 )
 abstract class AppDatabase : RoomDatabase() {
 
+    // 🧩 DAOs disponibles
     abstract fun userDao(): UserDao
     abstract fun gameDao(): GameDao
     abstract fun scenarioDao(): ScenarioDao
-    abstract fun triviaDao(): TriviaDao
+    abstract fun triviaDao(): TriviaQuestionDao
     abstract fun playerAnswerDao(): PlayerAnswerDao
 
     companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
+        /**
+         * 🔹 Devuelve una instancia única de la base de datos (Singleton)
+         * Usa el contexto de aplicación para evitar fugas de memoria.
+         */
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -37,6 +42,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "rde_app_database"
                 )
+                    // ⚠️ Solo para desarrollo: elimina la BD si cambias las entidades
                     .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance

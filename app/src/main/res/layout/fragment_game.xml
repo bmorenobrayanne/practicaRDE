@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Imagen del escenario -->
+    <ImageView
+        android:id="@+id/imgScenario"
+        android:layout_width="0dp"
+        android:layout_height="220dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Descripción del escenario -->
+    <TextView
+        android:id="@+id/txtScenarioDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Descripción del escenario..."
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/imgScenario"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Pregunta -->
+    <TextView
+        android:id="@+id/txtQuestion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="¿Cuál es la respuesta correcta?"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/txtScenarioDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Opciones tipo radio -->
+    <RadioGroup
+        android:id="@+id/radioGroupOptions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/txtQuestion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <!-- Se llenarán dinámicamente desde el ViewModel -->
+    </RadioGroup>
+
+    <!-- Botón responder -->
+    <Button
+        android:id="@+id/btnAnswer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Responder"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/radioGroupOptions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

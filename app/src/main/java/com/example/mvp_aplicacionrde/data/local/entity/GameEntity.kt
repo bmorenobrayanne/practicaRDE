@@ -20,6 +20,6 @@ data class GameEntity(
     val userId: String,
     val createdAt: Long,
     val state: String,
-    val currentScenarioId: String?,
-    val progressJson: String
+    var currentScenarioId: Int,
+    var progressJson: String
 )
