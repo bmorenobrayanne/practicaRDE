@@ -19,6 +19,9 @@ android {
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 
     buildTypes {
         release {
@@ -50,10 +53,12 @@ dependencies {
     // 🔹 --- ROOM (Base de datos local) ---
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     ksp("androidx.room:room-compiler:2.8.3")
 
     // 🔹 --- FIREBASE (Backend remoto) ---
-    implementation(platform("com.google.firebase:firebase-bom:34.0.0")) // Or a more recent version
+    implementation(platform("com.google.firebase:firebase-bom:34.4.0")) // Or a more recent version
 
     // Add the dependency for the Firebase Authentication library
     // WITHOUT the -ktx suffix
@@ -85,4 +90,10 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     // classpath(libs.google.services)
+
+    implementation("io.coil-kt:coil:2.4.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 }

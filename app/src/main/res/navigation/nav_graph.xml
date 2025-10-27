@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <!-- 🟦 Pantalla de inicio (Splash) -->
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.mvp_aplicacionrde.ui.splash.SplashFragment"
+        android:label="Splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
+
+    <!-- 🟩 Pantalla de inicio de sesión -->
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.mvp_aplicacionrde.ui.auth.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
+
+    <!-- 🟨 Menú principal con botones grandes -->
+    <fragment
+        android:id="@+id/mainMenuFragment"
+        android:name="com.example.mvp_aplicacionrde.ui.home.MainMenuFragment"
+        android:label="Main Menu"
+        tools:layout="@layout/fragment_main_menu">
+        <action
+            android:id="@+id/action_mainMenuFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_newGameFragment"
+            app:destination="@id/newGameFragment" />
+    </fragment>
+
+    <!-- 🟥 Pantalla de juego (escenario + trivia) -->
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.example.mvp_aplicacionrde.ui.game.GameFragment"
+        android:label="Game"
+        tools:layout="@layout/fragment_game">
+        <action
+            android:id="@+id/action_gameFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newGameFragment"
+        android:name="com.example.mvp_aplicacionrde.ui.game.NewGameFragment"
+        android:label="Nueva partida"
+        tools:layout="@layout/fragment_new_game">
+        <action
+            android:id="@+id/action_newGameFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_newGameFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+
+    </fragment>
+
+
+
+</navigation>

@@ -20,7 +20,6 @@ import com.example.mvp_aplicacionrde.data.local.entity.*
 )
 abstract class AppDatabase : RoomDatabase() {
 
-    // DAOs disponibles para toda la app
     abstract fun userDao(): UserDao
     abstract fun gameDao(): GameDao
     abstract fun scenarioDao(): ScenarioDao
@@ -31,19 +30,14 @@ abstract class AppDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
-        fun getInstance(context: Context): AppDatabase {
+        fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
                     "rde_app_database"
                 )
-                    // ⚠️ Durante desarrollo: destruye DB si hay cambios de versión
-                    .fallbackToDestructiveMigration(false)
-                    // ⚙️ (opcional) habilitar logs de consultas SQL
-                    // .setQueryCallback({ sqlQuery, bindArgs ->
-                    //     Log.d("RoomQuery", "SQL: $sqlQuery Args: $bindArgs")
-                    // }, Executors.newSingleThreadExecutor())
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 instance
